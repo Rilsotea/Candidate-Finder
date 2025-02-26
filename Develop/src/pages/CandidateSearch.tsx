@@ -9,8 +9,19 @@ const CandidateSearch = () => {
     JSON.parse(localStorage.getItem('savedCandidates') || '[]')
   );
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    searchGithub().then((data: Candidate[]) => setCandidates(data));
+    setLoading(true);
+    searchGithub()
+      .then((data: Candidate[]) => {
+        setCandidates(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching candidates:", error);
+        setLoading(false);
+      });
   }, []);
 
   const saveCandidate = () => {
@@ -25,6 +36,10 @@ const CandidateSearch = () => {
   const nextCandidate = () => {
     setCurrentIndex(prevIndex => prevIndex + 1);
   };
+
+  if (loading) {
+    return <h1>Loading candidates...</h1>;
+  }
 
   if (currentIndex >= candidates.length) {
     return <h1>No more candidates available</h1>;
