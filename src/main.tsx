@@ -1,31 +1,31 @@
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import App from './App';
+import CandidateSearch from './pages/CandidateSearch';
+import SavedCandidates from './pages/SavedCandidates';
+import ErrorPage from './pages/ErrorPage';
+import Nav from './components/Nav';
 import './index.css';
-
-import App from './App.tsx';
-import CandidateSearch from './pages/CandidateSearch.tsx';
-import SavedCandidates from './pages/SavedCandidates.tsx';
-import ErrorPage from './pages/ErrorPage.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: (
+      <>
+        <Nav />
+        <App />
+      </>
+    ),
     errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        element: <CandidateSearch />,
-      },
-      {
-        path: '/SavedCandidates',
-        element: <SavedCandidates />,
-      },
+      { index: true, element: <CandidateSearch /> },
+      { path: 'saved', element: <SavedCandidates /> },
     ],
   },
 ]);
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
+  import('react-dom/client').then((ReactDOM) =>
+    ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />)
+  );
 }

@@ -3,13 +3,18 @@
 
   const Nav = () => {
     return (
-      <nav>
+      <nav className="nav">
         <ul>
-          <li><Link to="/">Search Candidates</Link></li>
-          <li><Link to="/saved">Saved Candidates</Link></li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link">Search Candidates</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/saved" className="nav-link">Saved Candidates</Link>
+          </li>
         </ul>
       </nav>
     );
   };
   
   export default Nav;
+  
