@@ -1,4 +1,6 @@
 # Candidate Searcher
+![image](https://github.com/user-attachments/assets/2a217244-73e7-4d56-91e1-183c43c9652d)
+
 
 ## Description
 This is a web application that allows users to search for candidates based on their skills and experience. The application uses a machine learning model to match candidates with job descriptions and provides a list of the most relevant candidates.
